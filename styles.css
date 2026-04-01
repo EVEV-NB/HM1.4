@@ -1,0 +1,930 @@
+/* 全局样式：设置所有元素的默认样式 */
+* {
+  margin: 0; /* 外边距为0 */
+  padding: 0; /* 内边距为0 */
+  box-sizing: border-box; /* 盒模型为border-box，确保元素尺寸计算正确 */
+}
+
+/* 页面主体样式 */
+body {
+  font-family: 'Microsoft YaHei', Arial, sans-serif; /* 设置字体，优先使用微软雅黑 */
+  margin: 0; /* 外边距为0 */
+  padding: 20px; /* 内边距为20px */
+  background-color: #f5f5f5; /* 背景颜色为浅灰色 */
+  background-image: linear-gradient(135deg, #f5f5f5 0%, #e8e8e8 100%); /* 背景渐变效果 */
+  min-height: 100vh; /* 最小高度为视口高度，确保页面充满屏幕 */
+}
+
+/* 容器样式：包裹所有页面内容 */
+.container {
+  max-width: 1200px; /* 最大宽度为1200px */
+  margin: 0 auto; /* 水平居中 */
+  background: white; /* 背景颜色为白色 */
+  padding: 20px; /* 内边距为20px */
+  border-radius: 12px; /* 圆角为12px */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1); /* 阴影效果，增加立体感 */
+  animation: fadeIn 0.5s ease-in-out; /* 淡入动画效果 */
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 垂直方向排列 */
+  gap: 20px; /* 元素间距为20px */
+}
+
+/* 内容区域布局 */
+.content-area {
+  display: flex; /* 使用flex布局 */
+  gap: 20px; /* 元素间距为20px */
+  align-items: flex-start; /* 顶部对齐 */
+}
+
+/* 主内容区域 */
+.main-content {
+  flex: 1; /* 占满剩余空间 */
+  min-width: 0; /* 允许收缩 */
+}
+
+/* 右侧侧边栏 */
+.sidebar {
+  width: 300px; /* 宽度为300px */
+  background: #f8f9fa; /* 背景颜色为浅灰色 */
+  padding: 20px; /* 内边距为20px */
+  border-radius: 12px; /* 圆角为12px */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影效果 */
+  border: 1px solid #e9ecef; /* 边框为浅灰色 */
+  animation: fadeIn 0.5s ease-in-out 0.5s both; /* 淡入动画效果，延迟0.5秒 */
+}
+
+/* 侧边栏标题样式 */
+.sidebar h2 {
+  color: #333; /* 文本颜色为深灰色 */
+  margin-bottom: 15px; /* 底部外边距为15px */
+  font-size: 18px; /* 字体大小为18px */
+  font-weight: 600; /* 字体加粗 */
+  border-bottom: 2px solid #e3f2fd; /* 底部边框为浅蓝色 */
+  padding-bottom: 10px; /* 底部内边距为10px */
+}
+
+/* 提货人列表样式 */
+.recipient-list {
+  display: flex; /* 使用flex布局 */
+  flex-direction: column; /* 垂直方向排列 */
+  gap: 10px; /* 元素间距为10px */
+}
+
+/* 提货人项样式 */
+.recipient-item {
+  background: white; /* 背景颜色为白色 */
+  padding: 15px; /* 内边距为15px */
+  border-radius: 8px; /* 圆角为8px */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* 阴影效果 */
+  border: 1px solid #e9ecef; /* 边框为浅灰色 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+/* 提货人项悬停效果 */
+.recipient-item:hover {
+  transform: translateY(-2px); /* 悬停时向上移动2px */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); /* 悬停时阴影加深 */
+  border-color: #2196f3; /* 悬停时边框颜色变为蓝色 */
+}
+
+/* 提货人名称样式 */
+.recipient-name {
+  font-size: 16px; /* 字体大小为16px */
+  font-weight: 500; /* 字体加粗 */
+  color: #333; /* 文本颜色为深灰色 */
+  margin-bottom: 5px; /* 底部外边距为5px */
+}
+
+/* 提货人金额样式 */
+.recipient-amount {
+  font-size: 18px; /* 字体大小为18px */
+  font-weight: 600; /* 字体加粗 */
+  color: #2196f3; /* 文本颜色为蓝色 */
+}
+
+/* 头部样式：显示标题和用户信息 */
+.header {
+  display: flex; /* 使用flex布局 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 30px; /* 底部外边距为30px */
+  position: relative; /* 相对定位 */
+  padding-bottom: 15px; /* 底部内边距为15px */
+  border-bottom: 2px solid #e3f2fd; /* 底部边框为浅蓝色 */
+}
+
+/* 头部标题样式 */
+.header h1 {
+  margin: 0; /* 外边距为0 */
+  flex: 1; /* 占满剩余空间 */
+  text-align: center; /* 文本居中 */
+  color: #333; /* 文本颜色为深灰色 */
+  font-size: 28px; /* 字体大小为28px */
+  font-weight: 600; /* 字体加粗 */
+  letter-spacing: 1px; /* 字间距为1px */
+}
+
+/* 用户信息样式：显示登录用户信息 */
+.user-info {
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中 */
+  gap: 12px; /* 元素间距为12px */
+  background: #e3f2fd; /* 背景颜色为浅蓝色 */
+  padding: 10px 20px; /* 内边距为10px 20px */
+  border-radius: 25px; /* 圆角为25px */
+  border: 1px solid #bbdefb; /* 边框为浅蓝灰色 */
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.2); /* 阴影效果 */
+  transition: all 0.3s ease; /* 过渡效果，持续0.3秒 */
+}
+
+/* 用户信息悬停效果 */
+.user-info:hover {
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); /* 悬停时阴影加深 */
+  transform: translateY(-2px); /* 悬停时向上移动2px */
+}
+
+/* 用户邮箱样式 */
+.user-info span {
+  color: #1976d2; /* 文本颜色为深蓝色 */
+  font-weight: 500; /* 字体加粗 */
+  font-size: 14px; /* 字体大小为14px */
+}
+
+/* 退出登录按钮样式 */
+.user-info button {
+  margin: 0; /* 外边距为0 */
+  padding: 6px 14px; /* 内边距为6px 14px */
+  font-size: 12px; /* 字体大小为12px */
+  background: #dc3545; /* 背景颜色为红色 */
+  border: none; /* 无边框 */
+  border-radius: 20px; /* 圆角为20px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 退出登录按钮悬停效果 */
+.user-info button:hover {
+  background: #c82333; /* 悬停时背景颜色加深 */
+  transform: scale(1.05); /* 悬停时放大1.05倍 */
+}
+
+/* 登录区域样式 */
+.login-section {
+  background: #e3f2fd; /* 背景颜色为浅蓝色 */
+  padding: 30px; /* 内边距为30px */
+  border-radius: 12px; /* 圆角为12px */
+  margin-bottom: 30px; /* 底部外边距为30px */
+  border: 1px solid #bbdefb; /* 边框为浅蓝灰色 */
+  box-shadow: 0 4px 15px rgba(33, 150, 243, 0.15); /* 阴影效果 */
+  animation: slideIn 0.5s ease-out; /* 滑入动画效果 */
+}
+
+/* 登录区域标题样式 */
+.login-section h2 {
+  color: #1976d2; /* 文本颜色为深蓝色 */
+  text-align: center; /* 文本居中 */
+  margin-bottom: 25px; /* 底部外边距为25px */
+  font-size: 20px; /* 字体大小为20px */
+  font-weight: 600; /* 字体加粗 */
+}
+
+/* 登录表单样式 */
+.login-form {
+  display: flex; /* 使用flex布局 */
+  gap: 15px; /* 元素间距为15px */
+  align-items: center; /* 垂直居中 */
+  flex-wrap: wrap; /* 换行显示 */
+  justify-content: center; /* 水平居中 */
+}
+
+/* 登录表单输入框样式 */
+.login-form input {
+  padding: 10px 15px; /* 内边距为10px 15px */
+  border: 1px solid #ddd; /* 边框为浅灰色 */
+  border-radius: 8px; /* 圆角为8px */
+  font-size: 14px; /* 字体大小为14px */
+  width: 220px; /* 宽度为220px */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 登录表单输入框聚焦效果 */
+.login-form input:focus {
+  outline: none; /* 移除默认轮廓 */
+  border-color: #2196f3; /* 边框颜色变为蓝色 */
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1); /* 阴影效果 */
+}
+
+/* 登录表单标签样式 */
+.login-form label {
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中 */
+  gap: 8px; /* 元素间距为8px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 14px; /* 字体大小为14px */
+  color: #555; /* 文本颜色为灰色 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 登录表单标签悬停效果 */
+.login-form label:hover {
+  color: #1976d2; /* 悬停时文本颜色变为深蓝色 */
+}
+
+/* 登录按钮样式 */
+.login-form button {
+  padding: 10px 20px; /* 内边距为10px 20px */
+  background: #2196f3; /* 背景颜色为蓝色 */
+  color: white; /* 文本颜色为白色 */
+  border: none; /* 无边框 */
+  border-radius: 8px; /* 圆角为8px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 14px; /* 字体大小为14px */
+  font-weight: 500; /* 字体加粗 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 登录按钮悬停效果 */
+.login-form button:hover {
+  background: #1976d2; /* 悬停时背景颜色加深 */
+  transform: translateY(-2px); /* 悬停时向上移动2px */
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3); /* 悬停时阴影加深 */
+}
+
+/* 状态信息样式 */
+.status {
+  margin-top: 15px; /* 顶部外边距为15px */
+  color: #666; /* 文本颜色为深灰色 */
+  text-align: center; /* 文本居中 */
+  font-size: 14px; /* 字体大小为14px */
+}
+
+/* 表单区域样式：添加出库记录 */
+.form-section {
+  background: #f8f9fa; /* 背景颜色为浅灰色 */
+  padding: 25px; /* 内边距为25px */
+  border-radius: 12px; /* 圆角为12px */
+  margin-bottom: 25px; /* 底部外边距为25px */
+  border: 1px solid #e9ecef; /* 边框为浅灰色 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* 阴影效果 */
+  animation: fadeIn 0.5s ease-in-out 0.2s both; /* 淡入动画效果，延迟0.2秒 */
+}
+
+/* 表单区域标题样式 */
+.form-section h2 {
+  color: #333; /* 文本颜色为深灰色 */
+  margin-bottom: 20px; /* 底部外边距为20px */
+  font-size: 18px; /* 字体大小为18px */
+  font-weight: 600; /* 字体加粗 */
+  border-bottom: 2px solid #e3f2fd; /* 底部边框为浅蓝色 */
+  padding-bottom: 10px; /* 底部内边距为10px */
+}
+
+/* 表单组样式：包含多个输入字段 */
+.form-group {
+  display: flex; /* 使用flex布局 */
+  gap: 15px; /* 元素间距为15px */
+  margin-bottom: 20px; /* 底部外边距为20px */
+  flex-wrap: wrap; /* 换行显示 */
+  align-items: flex-end; /* 垂直底部对齐 */
+}
+
+/* 表单组子元素样式 */
+.form-group > div {
+  flex: 1; /* 占满剩余空间 */
+  min-width: 150px; /* 最小宽度为150px */
+}
+
+/* 表单标签样式 */
+.form-group label {
+  display: block; /* 块级元素 */
+  margin-bottom: 8px; /* 底部外边距为8px */
+  font-weight: 500; /* 字体加粗 */
+  color: #555; /* 文本颜色为灰色 */
+  font-size: 14px; /* 字体大小为14px */
+}
+
+/* 表单输入框和下拉框样式 */
+.form-group input, .form-group select {
+  padding: 10px 12px; /* 内边距为10px 12px */
+  border: 1px solid #ddd; /* 边框为浅灰色 */
+  border-radius: 6px; /* 圆角为6px */
+  font-size: 14px; /* 字体大小为14px */
+  width: 100%; /* 宽度为100% */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 表单输入框和下拉框聚焦效果 */
+.form-group input:focus, .form-group select:focus {
+  outline: none; /* 移除默认轮廓 */
+  border-color: #2196f3; /* 边框颜色变为蓝色 */
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1); /* 阴影效果 */
+}
+
+/* 数字输入框样式 */
+.form-group input[type="number"] {
+  width: 100%; /* 宽度为100% */
+}
+
+/* 日期输入框样式 */
+.form-group input[type="date"] {
+  width: 100%; /* 宽度为100% */
+}
+
+/* 表单按钮样式 */
+.form-group button {
+  padding: 0 20px; /* 内边距为0 20px */
+  height: 40px; /* 高度为40px，与下拉选择框一致 */
+  background: #28a745; /* 背景颜色为绿色 */
+  color: white; /* 文本颜色为白色 */
+  border: none; /* 无边框 */
+  border-radius: 6px; /* 圆角为6px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 14px; /* 字体大小为14px */
+  font-weight: 500; /* 字体加粗 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+}
+
+/* 表单按钮悬停效果 */
+.form-group button:hover {
+  background: #218838; /* 悬停时背景颜色加深 */
+  transform: translateY(-2px); /* 悬停时向上移动2px */
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3); /* 悬停时阴影加深 */
+}
+
+/* 第二个按钮样式（清空按钮） */
+.form-group button:nth-child(2) {
+  background: #6c757d; /* 背景颜色为灰色 */
+}
+
+/* 第二个按钮悬停效果 */
+.form-group button:nth-child(2):hover {
+  background: #5a6268; /* 悬停时背景颜色加深 */
+}
+
+/* 过滤区域样式：用于查询过滤 */
+.filter-section {
+  background: #f8f9fa; /* 背景颜色为浅灰色 */
+  padding: 20px; /* 内边距为20px */
+  border-radius: 12px; /* 圆角为12px */
+  margin-bottom: 25px; /* 底部外边距为25px */
+  border: 1px solid #e9ecef; /* 边框为浅灰色 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* 阴影效果 */
+  animation: fadeIn 0.5s ease-in-out 0.3s both; /* 淡入动画效果，延迟0.3秒 */
+}
+
+/* 过滤区域标题样式 */
+.filter-section h2 {
+  color: #333; /* 文本颜色为深灰色 */
+  margin-bottom: 15px; /* 底部外边距为15px */
+  font-size: 18px; /* 字体大小为18px */
+  font-weight: 600; /* 字体加粗 */
+  border-bottom: 2px solid #e3f2fd; /* 底部边框为浅蓝色 */
+  padding-bottom: 10px; /* 底部内边距为10px */
+}
+
+/* 过滤条件组样式 */
+.filter-group {
+  display: flex; /* 使用flex布局 */
+  gap: 15px; /* 元素间距为15px */
+  align-items: flex-end; /* 垂直底部对齐 */
+  flex-wrap: wrap; /* 换行显示 */
+}
+
+/* 过滤条件组子元素样式 */
+.filter-group > div {
+  flex: 1; /* 占满剩余空间 */
+  min-width: 140px; /* 最小宽度为140px */
+}
+
+/* 过滤条件标签样式 */
+.filter-group label {
+  display: block; /* 块级元素 */
+  margin-bottom: 5px; /* 底部外边距为5px */
+  font-weight: 500; /* 字体加粗 */
+  color: #555; /* 文本颜色为灰色 */
+  font-size: 14px; /* 字体大小为14px */
+}
+
+/* 过滤条件输入框和下拉框样式 */
+.filter-group input, .filter-group select {
+  padding: 8px 12px; /* 内边距为8px 12px */
+  border: 1px solid #ddd; /* 边框为浅灰色 */
+  border-radius: 4px; /* 圆角为4px */
+  font-size: 14px; /* 字体大小为14px */
+  width: 100%; /* 宽度为100% */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 过滤条件输入框和下拉框聚焦效果 */
+.filter-group input:focus, .filter-group select:focus {
+  outline: none; /* 移除默认轮廓 */
+  border-color: #2196f3; /* 边框颜色变为蓝色 */
+  box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1); /* 阴影效果 */
+}
+
+/* 过滤按钮样式 */
+.filter-group button {
+  padding: 8px 16px; /* 内边距为8px 16px */
+  background: #2196f3; /* 背景颜色为蓝色 */
+  color: white; /* 文本颜色为白色 */
+  border: none; /* 无边框 */
+  border-radius: 4px; /* 圆角为4px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 14px; /* 字体大小为14px */
+  transition: all 0.3s ease; /* 过渡效果 */
+  margin-top: 20px; /* 顶部外边距为20px */
+}
+
+/* 过滤按钮悬停效果 */
+.filter-group button:hover {
+  background: #1976d2; /* 悬停时背景颜色加深 */
+  transform: translateY(-1px); /* 悬停时向上移动1px */
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3); /* 悬停时阴影加深 */
+}
+
+/* 导出按钮样式 */
+.export-btn {
+  background: #17a2b8 !important; /* 背景颜色为青蓝色，!important确保优先级 */
+}
+
+/* 导出按钮悬停效果 */
+.export-btn:hover {
+  background: #138496 !important; /* 悬停时背景颜色加深 */
+}
+
+/* 汇总区域样式：显示统计信息 */
+.summary-container {
+  display: flex; /* 使用flex布局 */
+  gap: 20px; /* 元素间距为20px */
+  margin-bottom: 30px; /* 底部外边距为30px */
+  flex-wrap: wrap; /* 换行显示 */
+  animation: fadeIn 0.5s ease-in-out 0.4s both; /* 淡入动画效果，延迟0.4秒 */
+}
+
+/* 付款状态汇总样式 */
+.payment-summary {
+  flex: 1; /* 占满剩余空间 */
+  min-width: 200px; /* 最小宽度为200px */
+  padding: 25px; /* 内边距为25px */
+  border-radius: 12px; /* 圆角为12px */
+  text-align: center; /* 文本居中 */
+  position: relative; /* 相对定位 */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* 阴影效果 */
+  border: 2px solid; /* 边框为2px */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+/* 付款状态汇总悬停效果 */
+.payment-summary:hover {
+  transform: translateY(-5px); /* 悬停时向上移动5px */
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2); /* 悬停时阴影加深 */
+}
+
+/* 已付款汇总样式 */
+.paid-summary {
+  background: linear-gradient(135deg, #d4edda, #c3e6cb); /* 背景渐变效果，浅绿色 */
+  border-color: #28a745; /* 边框颜色为绿色 */
+}
+
+/* 已付款汇总标题样式 */
+.paid-summary h3 {
+  color: #155724; /* 文本颜色为深绿色 */
+  margin-bottom: 15px; /* 底部外边距为15px */
+  font-size: 16px; /* 字体大小为16px */
+  font-weight: 600; /* 字体加粗 */
+}
+
+/* 已付款汇总金额样式 */
+.paid-summary .amount {
+  color: #28a745; /* 文本颜色为绿色 */
+  font-size: 28px; /* 字体大小为28px */
+  font-weight: bold; /* 字体加粗 */
+  margin-bottom: 10px; /* 底部外边距为10px */
+}
+
+/* 未付款汇总样式 */
+.unpaid-summary {
+  background: linear-gradient(135deg, #f8d7da, #f5c6cb); /* 背景渐变效果，浅红色 */
+  border-color: #dc3545; /* 边框颜色为红色 */
+}
+
+/* 未付款汇总标题样式 */
+.unpaid-summary h3 {
+  color: #721c24; /* 文本颜色为深红色 */
+  margin-bottom: 15px; /* 底部外边距为15px */
+  font-size: 16px; /* 字体大小为16px */
+  font-weight: 600; /* 字体加粗 */
+}
+
+/* 未付款汇总金额样式 */
+.unpaid-summary .amount {
+  color: #dc3545; /* 文本颜色为红色 */
+  font-size: 28px; /* 字体大小为28px */
+  font-weight: bold; /* 字体加粗 */
+  margin-bottom: 10px; /* 底部外边距为10px */
+}
+
+/* 付款状态指示器样式 */
+.payment-status-indicator {
+  position: absolute; /* 绝对定位 */
+  top: 15px; /* 距离顶部15px */
+  right: 15px; /* 距离右侧15px */
+  width: 40px; /* 宽度为40px */
+  height: 40px; /* 高度为40px */
+  border-radius: 50%; /* 圆角为50%，圆形 */
+  display: flex; /* 使用flex布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  font-size: 20px; /* 字体大小为20px */
+  font-weight: bold; /* 字体加粗 */
+  color: white; /* 文本颜色为白色 */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2); /* 阴影效果 */
+}
+
+/* 已付款状态指示器样式 */
+.payment-status-indicator.paid {
+  background: #28a745; /* 背景颜色为绿色 */
+}
+
+/* 未付款状态指示器样式 */
+.payment-status-indicator.unpaid {
+  background: #dc3545; /* 背景颜色为红色 */
+}
+
+/* 时间段统计区域样式 */
+.time-summary-section {
+  flex: 2; /* 占满剩余空间，是付款汇总的2倍 */
+  min-width: 300px; /* 最小宽度为300px */
+  display: grid; /* 使用grid布局 */
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); /* 自动适应列数，每列最小宽度160px */
+  gap: 15px; /* 元素间距为15px */
+}
+
+/* 统计卡片样式 */
+.summary-card {
+  background: #f8f9fa; /* 背景颜色为浅灰色 */
+  padding: 20px; /* 内边距为20px */
+  border-radius: 12px; /* 圆角为12px */
+  text-align: center; /* 文本居中 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* 阴影效果 */
+  border: 1px solid #e9ecef; /* 边框为浅灰色 */
+  transition: all 0.3s ease; /* 过渡效果 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+/* 统计卡片悬停效果 */
+.summary-card:hover {
+  transform: translateY(-3px); /* 悬停时向上移动3px */
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15); /* 悬停时阴影加深 */
+  border-color: #2196f3; /* 悬停时边框颜色变为蓝色 */
+}
+
+/* 统计卡片标题样式 */
+.summary-card h3 {
+  margin: 0 0 15px 0; /* 外边距为0 0 15px 0 */
+  color: #333; /* 文本颜色为深灰色 */
+  font-size: 14px; /* 字体大小为14px */
+  font-weight: 500; /* 字体加粗 */
+}
+
+/* 统计卡片金额样式 */
+.summary-card .amount {
+  font-size: 22px; /* 字体大小为22px */
+  font-weight: bold; /* 字体加粗 */
+  color: #2196f3; /* 文本颜色为蓝色 */
+}
+
+/* 记录表格样式 */
+#recordsTable {
+  width: 100%; /* 宽度为100% */
+  border-collapse: collapse; /* 边框合并 */
+  margin-bottom: 30px; /* 底部外边距为30px */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08); /* 阴影效果 */
+  border-radius: 12px; /* 圆角为12px */
+  overflow: hidden; /* 隐藏溢出内容 */
+  animation: fadeIn 0.5s ease-in-out 0.5s both; /* 淡入动画效果，延迟0.5秒 */
+}
+
+/* 表格表头样式 */
+#recordsTable th {
+  background: #f8f9fa; /* 背景颜色为浅灰色 */
+  font-weight: 600; /* 字体加粗 */
+  color: #333; /* 文本颜色为深灰色 */
+  padding: 15px; /* 内边距为15px */
+  text-align: left; /* 文本左对齐 */
+  border-bottom: 2px solid #e3f2fd; /* 底部边框为浅蓝色 */
+}
+
+/* 表格单元格样式 */
+#recordsTable td {
+  padding: 12px 15px; /* 内边距为12px 15px */
+  text-align: left; /* 文本左对齐 */
+  border-bottom: 1px solid #e9ecef; /* 底部边框为浅灰色 */
+  transition: background-color 0.3s ease; /* 背景颜色过渡效果 */
+}
+
+/* 表格行悬停效果 */
+#recordsTable tr:hover {
+  background: #f8f9fa; /* 悬停时背景颜色为浅灰色 */
+}
+
+/* 表格最后一行单元格样式 */
+#recordsTable tr:last-child td {
+  border-bottom: none; /* 最后一行无边框 */
+}
+
+/* 删除按钮样式 */
+.delete-btn {
+  background: #dc3545; /* 背景颜色为红色 */
+  color: white; /* 文本颜色为白色 */
+  border: none; /* 无边框 */
+  padding: 6px 12px; /* 内边距为6px 12px */
+  border-radius: 6px; /* 圆角为6px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 12px; /* 字体大小为12px */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 删除按钮悬停效果 */
+.delete-btn:hover {
+  background: #c82333; /* 悬停时背景颜色加深 */
+  transform: scale(1.05); /* 悬停时放大1.05倍 */
+  box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3); /* 悬停时阴影加深 */
+}
+
+/* 动画效果：淡入 */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* 初始透明度为0 */
+    transform: translateY(20px); /* 初始位置向下偏移20px */
+  }
+  to {
+    opacity: 1; /* 结束透明度为1 */
+    transform: translateY(0); /* 结束位置恢复原位 */
+  }
+}
+
+/* 动画效果：滑入 */
+@keyframes slideIn {
+  from {
+    opacity: 0; /* 初始透明度为0 */
+    transform: translateX(-20px); /* 初始位置向左偏移20px */
+  }
+  to {
+    opacity: 1; /* 结束透明度为1 */
+    transform: translateX(0); /* 结束位置恢复原位 */
+  }
+}
+
+/* 响应式设计：适配屏幕宽度小于768px的设备 */
+@media (max-width: 768px) {
+  .container {
+    padding: 15px; /* 内边距为15px */
+  }
+  
+  .header {
+    flex-direction: column; /* 垂直布局 */
+    gap: 15px; /* 元素间距为15px */
+    text-align: center; /* 文本居中 */
+  }
+  
+  .header h1 {
+    font-size: 24px; /* 字体大小为24px */
+  }
+  
+  .login-form {
+    flex-direction: column; /* 垂直布局 */
+    align-items: stretch; /* 拉伸对齐 */
+  }
+  
+  .login-form input {
+    width: 100%; /* 宽度为100% */
+  }
+  
+  .form-group {
+    flex-direction: column; /* 垂直布局 */
+    align-items: stretch; /* 拉伸对齐 */
+  }
+  
+  .filter-group {
+    flex-direction: column; /* 垂直布局 */
+    align-items: stretch; /* 拉伸对齐 */
+  }
+  
+  .summary-container {
+    flex-direction: column; /* 垂直布局 */
+  }
+  
+  .payment-summary {
+    width: 100%; /* 宽度为100% */
+  }
+  
+  .time-summary-section {
+    width: 100%; /* 宽度为100% */
+  }
+  
+  #recordsTable {
+    font-size: 14px; /* 字体大小为14px */
+  }
+  
+  #recordsTable th,
+  #recordsTable td {
+    padding: 8px 10px; /* 内边距为8px 10px */
+  }
+}
+
+/* 响应式设计：适配屏幕宽度小于480px的设备 */
+@media (max-width: 480px) {
+  body {
+    padding: 10px; /* 内边距为10px */
+  }
+  
+  .container {
+    padding: 10px; /* 内边距为10px */
+  }
+  
+  .header h1 {
+    font-size: 20px; /* 字体大小为20px */
+  }
+  
+  .login-section {
+    padding: 20px; /* 内边距为20px */
+  }
+  
+  .form-section,
+  .filter-section {
+    padding: 15px; /* 内边距为15px */
+  }
+  
+  .payment-summary {
+    padding: 20px; /* 内边距为20px */
+  }
+  
+  .summary-card {
+    padding: 15px; /* 内边距为15px */
+  }
+}
+
+/* 模态框样式 */
+.modal {
+  display: none; /* 默认隐藏 */
+  position: fixed; /* 固定定位 */
+  z-index: 1000; /* 层级最高 */
+  left: 0; /* 左侧对齐 */
+  top: 0; /* 顶部对齐 */
+  width: 100%; /* 宽度为100% */
+  height: 100%; /* 高度为100% */
+  overflow: auto; /* 自动滚动 */
+  background-color: rgba(0,0,0,0.5); /* 半透明黑色背景 */
+}
+
+/* 模态框内容样式 */
+.modal-content {
+  background-color: #fefefe; /* 背景颜色为白色 */
+  margin: 5% auto; /* 5% 顶部边距，水平居中 */
+  padding: 20px; /* 内边距为20px */
+  border: 1px solid #888; /* 边框为灰色 */
+  width: 90%; /* 宽度为90% */
+  max-width: 1000px; /* 最大宽度为1000px */
+  border-radius: 12px; /* 圆角为12px */
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2); /* 阴影效果 */
+  animation: fadeIn 0.3s ease-in-out; /* 淡入动画 */
+}
+
+/* 模态框头部样式 */
+.modal-header {
+  display: flex; /* 使用flex布局 */
+  justify-content: space-between; /* 两端对齐 */
+  align-items: center; /* 垂直居中 */
+  margin-bottom: 20px; /* 底部外边距为20px */
+  padding-bottom: 10px; /* 底部内边距为10px */
+  border-bottom: 1px solid #e0e0e0; /* 底部边框为浅灰色 */
+}
+
+/* 模态框标题样式 */
+.modal-header h2 {
+  margin: 0; /* 外边距为0 */
+  color: #333; /* 文本颜色为深灰色 */
+  font-size: 20px; /* 字体大小为20px */
+}
+
+/* 关闭按钮样式 */
+.close {
+  color: #aaa; /* 文本颜色为浅灰色 */
+  float: right; /* 右浮动 */
+  font-size: 28px; /* 字体大小为28px */
+  font-weight: bold; /* 字体加粗 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+/* 关闭按钮悬停效果 */
+.close:hover,
+.close:focus {
+  color: black; /* 悬停时文本颜色为黑色 */
+  text-decoration: none; /* 无下划线 */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+/* 模态框内容区域样式 */
+.modal-body {
+  margin-bottom: 20px; /* 底部外边距为20px */
+}
+
+/* 模态框汇总信息样式 */
+.modal-summary {
+  margin-bottom: 20px; /* 底部外边距为20px */
+  padding: 15px; /* 内边距为15px */
+  background: #f5f5f5; /* 背景颜色为浅灰色 */
+  border-radius: 8px; /* 圆角为8px */
+}
+
+/* 模态框表格样式 */
+#modalTable {
+  width: 100%; /* 宽度为100% */
+  border-collapse: collapse; /* 边框合并 */
+}
+
+/* 模态框表格头部样式 */
+#modalTable th {
+  background-color: #f2f2f2; /* 背景颜色为浅灰色 */
+  padding: 12px; /* 内边距为12px */
+  text-align: left; /* 文本左对齐 */
+  border-bottom: 1px solid #ddd; /* 底部边框为浅灰色 */
+  font-weight: 600; /* 字体加粗 */
+}
+
+/* 模态框表格单元格样式 */
+#modalTable td {
+  padding: 12px; /* 内边距为12px */
+  border-bottom: 1px solid #ddd; /* 底部边框为浅灰色 */
+}
+
+/* 模态框表格行悬停效果 */
+#modalTable tr:hover {
+  background-color: #f5f5f5; /* 悬停时背景颜色为浅灰色 */
+}
+
+/* 模态框底部样式 */
+.modal-footer {
+  display: flex; /* 使用flex布局 */
+  justify-content: flex-end; /* 右对齐 */
+  padding-top: 15px; /* 顶部内边距为15px */
+  border-top: 1px solid #e0e0e0; /* 顶部边框为浅灰色 */
+}
+
+/* 模态框底部按钮样式 */
+.modal-footer button {
+  padding: 10px 20px; /* 内边距为10px 20px */
+  background: #6c757d; /* 背景颜色为灰色 */
+  color: white; /* 文本颜色为白色 */
+  border: none; /* 无边框 */
+  border-radius: 6px; /* 圆角为6px */
+  cursor: pointer; /* 鼠标悬停时显示手型 */
+  font-size: 14px; /* 字体大小为14px */
+  font-weight: 500; /* 字体加粗 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 模态框底部按钮悬停效果 */
+.modal-footer button:hover {
+  background: #5a6268; /* 悬停时背景颜色加深 */
+  transform: translateY(-2px); /* 悬停时向上移动2px */
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3); /* 悬停时阴影加深 */
+}
+
+/* 液态玻璃形态提示框样式 */
+.toast {
+  position: fixed; /* 固定定位 */
+  top: 50%; /* 顶部位置为50% */
+  left: 50%; /* 左侧位置为50% */
+  transform: translate(-50%, -50%) scale(0); /* 初始位置居中，缩放为0 */
+  padding: 20px 40px; /* 内边距为20px 40px */
+  background: rgba(255, 255, 255, 0.2); /* 半透明白色背景 */
+  backdrop-filter: blur(10px); /* 背景模糊效果 */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* 半透明白色边框 */
+  border-radius: 12px; /* 圆角为12px */
+  color: #333; /* 文本颜色为深灰色 */
+  font-size: 16px; /* 字体大小为16px */
+  font-weight: 500; /* 字体加粗 */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  z-index: 2000; /* 层级最高 */
+  opacity: 0; /* 初始透明度为0 */
+  transition: all 0.3s ease; /* 过渡效果 */
+}
+
+/* 提示框显示状态 */
+.toast.show {
+  opacity: 1; /* 透明度为1 */
+  transform: translate(-50%, -50%) scale(1); /* 居中显示，缩放为1 */
+}
+
+/* 提示框隐藏状态 */
+.toast.hide {
+  opacity: 0; /* 透明度为0 */
+  transform: translate(-50%, -50%) scale(0.8); /* 居中显示，缩放为0.8 */
+}

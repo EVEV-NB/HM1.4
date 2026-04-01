@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!-- 声明文档类型为HTML5 -->
+<html lang="zh-CN">
+<!-- 根元素，设置语言为中文 -->
+<head>
+    <!-- 元数据：设置字符编码为UTF-8，支持中文 -->
+    <meta charset="UTF-8">
+    <!-- 元数据：设置视口，确保在不同设备上显示正常 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 页面标题：显示在浏览器标签页上 -->
+    <title>洪茂制冷设备有限公司出库记录</title>
+    <!-- 引入样式文件，控制页面外观 -->
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <!-- 主容器，包含所有页面内容 -->
+    <div class="container">
+        <!-- 页面头部，显示标题和用户信息 -->
+        <div class="header">
+            <!-- 页面主标题 -->
+            <h1>洪茂制冷设备有限公司出库记录</h1>
+            <!-- 用户信息区域，默认隐藏，登录后显示 -->
+            <div class="user-info" id="userInfo" style="display: none;">
+                <!-- 显示登录用户的邮箱 -->
+                <span id="userEmail"></span>
+                <!-- 退出登录按钮 -->
+                <button id="logoutBtnHeader">退出登录</button>
+            </div>
+        </div>
+
+        <!-- 登录区域，默认显示 -->
+        <div class="login-section" id="loginSection">
+            <h2>管理员登录</h2>
+            <!-- 登录表单 -->
+            <div class="login-form">
+                <!-- 邮箱输入框 -->
+                <input id="email" type="email" placeholder="邮箱" required />
+                <!-- 密码输入框 -->
+                <input id="password" type="password" placeholder="密码" required />
+                <!-- 记住账号密码选项 -->
+                <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+                    <input type="checkbox" id="rememberMe" style="width: auto;">
+                    记住账号密码
+                </label>
+                <!-- 登录按钮 -->
+                <button id="loginBtn">登录</button>
+            </div>
+            <!-- 登录状态显示 -->
+            <p id="authInfo" class="status">未登录</p>
+        </div>
+
+        <!-- 工天记录入口 -->
+        <div class="form-section" id="workdaySection" style="display: none;">
+            <h2>工天记录</h2>
+            <div style="text-align: center; padding: 20px;">
+                <button onclick="window.location.href='workdays.html'" style="padding: 15px 30px; font-size: 16px; background: #2196f3; color: white; border: none; border-radius: 6px; cursor: pointer; transition: all 0.3s ease;">
+                    进入工天记录管理
+                </button>
+            </div>
+        </div>
+
+        <!-- 添加出库记录区域，默认隐藏，登录后显示 -->
+        <div class="form-section" id="addRecordSection" style="display: none;">
+            <h2>添加出库记录</h2>
+            <!-- 表单组，包含所有输入字段 -->
+            <div class="form-group">
+                <!-- 日期输入 -->
+                <div>
+                    <label for="date">日期：</label>
+                    <input type="date" id="date" required>
+                </div>
+                <!-- 型号输入 -->
+                <div>
+                    <label for="model">型号：</label>
+                    <input type="text" id="model" placeholder="请输入型号" required>
+                </div>
+                <!-- 提货人输入 -->
+                <div>
+                    <label for="recipient">提货人：</label>
+                    <input type="text" id="recipient" placeholder="请输入提货人" required>
+                </div>
+                <!-- 数量输入 -->
+                <div>
+                    <label for="quantity">数量：</label>
+                    <input type="number" id="quantity" min="0" step="0.01" placeholder="0" required>
+                </div>
+                <!-- 单价输入 -->
+                <div>
+                    <label for="price">单价：</label>
+                    <input type="number" id="price" min="0" step="0.01" placeholder="0.00" required>
+                </div>
+                <!-- 小计显示（自动计算，只读） -->
+                <div>
+                    <label for="subtotal">小计：</label>
+                    <input type="number" id="subtotal" readonly step="0.01">
+                </div>
+                <!-- 备注输入框 -->
+                <div>
+                    <label for="remark">备注：</label>
+                    <input type="text" id="remark" placeholder="请输入备注信息" style="width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+                </div>
+                <!-- 付款状态选项和操作按钮 -->
+                <div style="display: flex; justify-content: center; align-items: center; gap: 20px; width: 100%;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <label for="paymentStatus" style="white-space: nowrap; font-size: 14px;">付款状态：</label>
+                        <select id="paymentStatus" style="padding: 10px 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; height: 40px;">
+                            <option value="false">未付款</option>
+                            <option value="true">已付款</option>
+                        </select>
+                    </div>
+                    <div style="display: flex; gap: 10px; align-items: center;">
+                        <!-- 添加记录按钮，点击后调用addRecord函数 -->
+                        <button onclick="addRecord()">添加记录</button>
+                        <!-- 清空表单按钮，点击后调用clearForm函数 -->
+                        <button onclick="clearForm()">清空</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 查询过滤区域，默认隐藏，登录后显示 -->
+        <div class="filter-section" id="filterSection" style="display: none;">
+            <h2>查询过滤</h2>
+            <!-- 过滤条件组 -->
+            <div class="filter-group">
+                <!-- 日期过滤 -->
+                <div>
+                    <label for="filterDate">日期：</label>
+                    <input type="date" id="filterDate">
+                </div>
+                <!-- 型号过滤 -->
+                <div>
+                    <label for="filterModel">型号：</label>
+                    <input type="text" id="filterModel" placeholder="输入型号关键词">
+                </div>
+                <!-- 提货人过滤 -->
+                <div>
+                    <label for="filterRecipient">提货人：</label>
+                    <input type="text" id="filterRecipient" placeholder="输入提货人关键词">
+                </div>
+                <!-- 付款状态过滤 -->
+                <div>
+                    <label for="filterPayment">付款状态：</label>
+                    <select id="filterPayment">
+                        <option value="">全部</option>
+                        <option value="paid">已付款</option>
+                        <option value="unpaid">未付款</option>
+                    </select>
+                </div>
+                <!-- 过滤操作按钮 -->
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    <!-- 应用过滤按钮，点击后调用applyFilters函数 -->
+                    <button onclick="applyFilters()">查询</button>
+                    <!-- 清除过滤按钮，点击后调用clearFilters函数 -->
+                    <button onclick="clearFilters()">清空</button>
+                    <!-- 导出CSV按钮，点击后调用exportToCSV函数 -->
+                    <button class="export-btn" onclick="exportToCSV()">导出CSV</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计汇总区域，默认隐藏，登录后显示 -->
+        <div class="summary-container" id="summarySection" style="display: none;">
+            <!-- 已付款合计 -->
+            <div class="payment-summary paid-summary" onclick="openDetailModal('paid')">
+                <h3>已付款合计</h3>
+                <div class="amount" id="paidTotal">¥0.00</div>
+                <div class="payment-status-indicator paid">✓</div>
+            </div>
+
+            <!-- 时间段统计区域 -->
+            <div class="time-summary-section">
+                <!-- 今日合计 -->
+                <div class="summary-card" onclick="openDetailModal('daily')">
+                    <h3>今日合计</h3>
+                    <div class="amount" id="dailyTotal">¥0.00</div>
+                </div>
+                <!-- 本周合计 -->
+                <div class="summary-card" onclick="openDetailModal('weekly')">
+                    <h3>本周合计</h3>
+                    <div class="amount" id="weeklyTotal">¥0.00</div>
+                </div>
+                <!-- 本月合计 -->
+                <div class="summary-card" onclick="openDetailModal('monthly')">
+                    <h3>本月合计</h3>
+                    <div class="amount" id="monthlyTotal">¥0.00</div>
+                </div>
+                <!-- 本季度合计 -->
+                <div class="summary-card" onclick="openDetailModal('quarterly')">
+                    <h3>本季度合计</h3>
+                    <div class="amount" id="quarterlyTotal">¥0.00</div>
+                </div>
+                <!-- 今年合计 -->
+                <div class="summary-card" onclick="openDetailModal('yearly')">
+                    <h3>今年合计</h3>
+                    <div class="amount" id="yearlyTotal">¥0.00</div>
+                </div>
+            </div>
+
+            <!-- 未付款合计 -->
+            <div class="payment-summary unpaid-summary" onclick="openDetailModal('unpaid')">
+                <h3>未付款合计</h3>
+                <div class="amount" id="unpaidTotal">¥0.00</div>
+                <div class="payment-status-indicator unpaid">!</div>
+            </div>
+        </div>
+
+        <!-- 详细记录模态框 -->
+        <div id="detailModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 id="modalTitle">详细记录</h2>
+                    <span class="close" onclick="closeDetailModal()">&times;</span>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-summary" id="modalSummary">
+                        <h3>合计：<span id="modalTotal">¥0.00</span></h3>
+                    </div>
+                    <table id="modalTable">
+                        <thead>
+                            <tr>
+                                <th>日期</th>
+                                <th>型号</th>
+                                <th>提货人</th>
+                                <th>数量</th>
+                                <th>单价</th>
+                                <th>小计</th>
+                                <th>备注</th>
+                                <th>付款状态</th>
+                            </tr>
+                        </thead>
+                        <tbody id="modalTableBody">
+                            <!-- 记录将在这里显示 -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button onclick="closeDetailModal()">关闭</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 液态玻璃形态提示框 -->
+        <div id="toast" class="toast">添加成功</div>
+
+        <!-- 内容区域布局 -->
+        <div class="content-area">
+            <!-- 主内容区域 -->
+            <div class="main-content">
+                <!-- 记录表格，默认隐藏，登录后显示 -->
+                <table id="recordsTable" style="display: none;">
+                    <!-- 表格头部，定义列名 -->
+                    <thead>
+                    <tr>
+                        <th>日期</th>
+                        <th>型号</th>
+                        <th>提货人</th>
+                        <th>数量</th>
+                        <th>单价</th>
+                        <th>小计</th>
+                        <th>备注</th>
+                        <th>付款状态</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                    <tbody id="recordsBody">
+                        <!-- 记录将在这里显示 -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- 右侧提货人统计板块 -->
+            <div class="sidebar" id="recipientSection" style="display: none;">
+                <h2>提货人统计</h2>
+                <div class="recipient-list" id="recipientList">
+                    <!-- 提货人列表将在这里显示 -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 引入Supabase JavaScript库，用于数据库操作 -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- 引入自定义JavaScript文件，包含主要功能逻辑 -->
+    <script src="./app.js"></script>
+    
+    <!-- 页面内脚本，用于设置自动计算小计功能 -->
+    <script>
+        // 设置自动计算小计的函数
+        function setupAutoCalculation() {
+            // 获取数量输入框元素
+            const quantityInput = document.getElementById('quantity');
+            // 获取单价输入框元素
+            const priceInput = document.getElementById('price');
+            // 获取小计输入框元素
+            const subtotalInput = document.getElementById('subtotal');
+
+            // 计算小计的函数
+            function calculateSubtotal() {
+                // 获取数量值，转换为数字，若为空则默认为0
+                const quantity = parseFloat(quantityInput.value) || 0;
+                // 获取单价值，转换为数字，若为空则默认为0
+                const price = parseFloat(priceInput.value) || 0;
+                // 计算小计：数量 × 单价
+                const subtotal = quantity * price;
+                // 将计算结果显示在小计输入框中，保留两位小数
+                subtotalInput.value = subtotal.toFixed(2);
+            }
+
+            // 为数量输入框添加输入事件监听器，输入时自动计算小计
+            quantityInput.addEventListener('input', calculateSubtotal);
+            // 为单价输入框添加输入事件监听器，输入时自动计算小计
+            priceInput.addEventListener('input', calculateSubtotal);
+        }
+
+        // 页面加载完成后执行的函数
+        document.addEventListener('DOMContentLoaded', function() {
+            // 调用设置自动计算小计的函数
+            setupAutoCalculation();
+        });
+    </script>
+</body>
+</html>
